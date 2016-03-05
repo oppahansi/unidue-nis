@@ -1,7 +1,5 @@
 package de.unidue.iem.tdr.nis.client;
 
-import com.oppahansi.uniduenis.tasks.until.Constants;
-
 /**
  * Diese Klasse ermoeglicht das Abrufen von Aufgaben vom Server und die
  * Implementierung der dazugehoerigen Loesungen.
