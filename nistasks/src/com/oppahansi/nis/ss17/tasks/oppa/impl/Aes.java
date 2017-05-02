@@ -1,8 +1,10 @@
 package com.oppahansi.nis.ss17.tasks.oppa.impl;
 
 /**
- * Created by Oppa on 5/3/2017.
+ * <p>This class represents the implementation of AES algorithm</p>
+ *
+ * @author Alexander Schellenberg
  */
 public class Aes {
-    
+
 }

@@ -1,7 +1,7 @@
 package com.oppahansi.nis.ss17.tasks.oppa.impl;
 
 /**
- * <p>This class represents the implementation of des round key calculation algorithm</p>
+ * <p>This class represents the implementation of DES algorithm</p>
  *
  * @author Alexander Schellenberg
  */
