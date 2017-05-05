@@ -1,5 +1,9 @@
 package de.unidue.iem.tdr.nis.client;
 
+import com.oppahansi.nis.ss17.tasks.oppa.impl.Factorization;
+import com.oppahansi.nis.ss17.tasks.oppa.impl.Modulo;
+import com.oppahansi.nis.ss17.tasks.oppa.impl.Xor;
+
 /**
  * Diese Klasse ermoeglicht das Abrufen von Aufgaben vom Server und die
  * Implementierung der dazugehoerigen Loesungen.
@@ -76,10 +80,20 @@ public class Client implements TaskDefs {
                     break;
                 case TASK_XOR:
                     currentTask = con.getTask(tasks[i]);
-                    //solution =
+                    solution = Xor.xorHexStrings(currentTask.getStringArray(0), currentTask.getStringArray(1));
+                    break;
+                case TASK_MODULO:
+                    currentTask = con.getTask(tasks[i]);
+                    solution = Modulo.mod(currentTask.getIntArray(0), currentTask.getIntArray(1));
+                    break;
+                case TASK_FACTORIZATION:
+                    currentTask = con.getTask(tasks[i]);
+                    solution = Factorization.factorize(currentTask.getIntArray(0));
+                    break;
                 default:
                     currentTask = con.getTask(tasks[i]);
                     solution = "Nicht implementiert!";
+                    break;
             }
 
             if (con.sendSolution(solution)) {

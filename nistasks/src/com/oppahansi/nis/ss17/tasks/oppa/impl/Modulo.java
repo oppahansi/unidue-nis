@@ -6,7 +6,12 @@ package com.oppahansi.nis.ss17.tasks.oppa.impl;
  * @author Alexander Schellenberg
  */
 public class Modulo {
-    public static int mod(int arg1, int arg2) {
-        return -1;
+    public static String mod(int devident, int devisor) {
+        try {
+            return (devident - (devisor * (devident / devisor))) + "";
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return "";
+        }
     }
 }
