@@ -9,10 +9,21 @@ import com.oppahansi.nis.ss17.tasks.oppa.util.Converter;
  */
 public class Xor {
     public static String xorHexStrings(String arg1, String arg2) {
+        System.out.println(arg1);
+        System.out.println(arg2);
         arg1 = Converter.HexToBin(arg1);
         arg2 = Converter.HexToBin(arg2);
-        if (arg1.length() < arg2.length()) arg1 = "0000" + arg1;
-        if (arg2.length() < arg1.length()) arg2 = "0000" + arg2;
+        if (arg1.length() < arg2.length()) {
+            for (int i = 0; i < arg2.length() - arg1.length(); i++) {
+                arg1 = "0000" + arg1;
+            }
+
+        }
+        if (arg2.length() < arg1.length()) {
+            for (int i = 0; i < arg1.length() - arg2.length(); i++) {
+                arg2 = "0000" + arg2;
+            }
+        }
         return removeZeros(xorBinaryStrings(arg1, arg2));
     }
 
