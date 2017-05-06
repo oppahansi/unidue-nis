@@ -2,6 +2,7 @@ package de.unidue.iem.tdr.nis.client;
 
 import com.oppahansi.nis.ss17.tasks.oppa.impl.Factorization;
 import com.oppahansi.nis.ss17.tasks.oppa.impl.Modulo;
+import com.oppahansi.nis.ss17.tasks.oppa.impl.Vigenere;
 import com.oppahansi.nis.ss17.tasks.oppa.impl.Xor;
 
 /**
@@ -89,6 +90,10 @@ public class Client implements TaskDefs {
                 case TASK_FACTORIZATION:
                     currentTask = con.getTask(tasks[i]);
                     solution = Factorization.factorize(currentTask.getIntArray(0));
+                    break;
+                case TASK_VIGENERE:
+                    currentTask = con.getTask(tasks[i]);
+                    solution = Vigenere.decryptChiffreWithKey(currentTask.getStringArray(0), currentTask.getStringArray(1));
                     break;
                 default:
                     currentTask = con.getTask(tasks[i]);

@@ -6,7 +6,8 @@ package com.oppahansi.nis.ss17.tasks.oppa.util;
  * @author Alexander Schellenberg
  */
 public class Constants {
-    static String HEX_ALPHABET = "0123456789ABCDEF";
+    public static String HEX_ALPHABET = "0123456789ABCDEF";
+    public static String ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
     enum Binary {
         ZERO("0000"),
