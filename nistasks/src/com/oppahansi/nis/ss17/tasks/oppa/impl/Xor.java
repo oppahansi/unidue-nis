@@ -19,17 +19,6 @@ public class Xor {
         arg1 = Converter.HexToBin(arg1);
         arg2 = Converter.HexToBin(arg2);
 
-        if (arg1.length() < arg2.length()) {
-            for (int i = 0; i < arg2.length() - arg1.length(); i++) {
-                arg1 = "0000" + arg1;
-            }
-        }
-        if (arg2.length() < arg1.length()) {
-            for (int i = 0; i < arg1.length() - arg2.length(); i++) {
-                arg2 = "0000" + arg2;
-            }
-        }
-
         return removeZeros(xorBinaryStrings(arg1, arg2));
     }
 
@@ -43,11 +32,34 @@ public class Xor {
     public static String xorBinaryStrings(String arg1, String arg2) {
         StringBuilder result = new StringBuilder();
 
+        if (arg1.length() < arg2.length()) {
+            arg1 = getZeros(arg2.length() - arg1.length()) + arg1;
+        }
+        if (arg2.length() < arg1.length()) {
+            arg2 = getZeros(arg1.length() - arg2.length()) + arg2;
+        }
+
         for (int i = 0; i < arg1.length(); i++) {
             result.append(arg1.charAt(i) == arg2.charAt(i) ? "0" : "1");
         }
 
         return result.toString();
+    }
+
+    /**
+     * Helper method to get a string containing 0s.
+     *
+     * @param amount
+     * @return
+     */
+    private static String getZeros(int amount) {
+        StringBuilder expansion = new StringBuilder();
+
+        for (int i = 0; i < amount; i++) {
+            expansion.append("0");
+        }
+
+        return expansion.toString();
     }
 
     /**
