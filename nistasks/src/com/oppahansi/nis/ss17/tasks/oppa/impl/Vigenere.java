@@ -8,6 +8,14 @@ import com.oppahansi.nis.ss17.tasks.oppa.util.Constants;
  * @author Alexander Schellenberg
  */
 public class Vigenere {
+
+    /**
+     * Decrytps a vigenere chiffre text using the given key.
+     *
+     * @param chiffre Enrypted message
+     * @param key Encryption key
+     * @return
+     */
     public static String decryptChiffreWithKey(String chiffre, String key) {
         String expandedKey = expandKey(chiffre, key);
         StringBuilder plain = new StringBuilder();
@@ -24,6 +32,13 @@ public class Vigenere {
         return plain.toString();
     }
 
+    /**
+     * Encrypts plain text using the given key.
+     *
+     * @param plain Text to encrypt
+     * @param key Encryption key
+     * @return
+     */
     public static String enryptPlainWithKey(String plain, String key) {
         String expandedKey = expandKey(plain, key);
         StringBuilder chiffre = new StringBuilder();
@@ -38,6 +53,13 @@ public class Vigenere {
         return chiffre.toString();
     }
 
+    /**
+     * Helper method to expand the key to given input string.
+     *
+     * @param input Message
+     * @param key Encryption key
+     * @return
+     */
     private static String expandKey(String input, String key) {
         StringBuilder result = new StringBuilder();
 

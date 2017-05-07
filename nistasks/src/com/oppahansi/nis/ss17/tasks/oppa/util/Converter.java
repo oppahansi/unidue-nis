@@ -1,7 +1,9 @@
 package com.oppahansi.nis.ss17.tasks.oppa.util;
 
 /**
- * Created by Oppa on 5/5/2017.
+ * <p>This class contains a collection of useful converter methods.</p>
+ *
+ * @author Alexander Schellenberg
  */
 public class Converter {
     public static String HexToBin(String hexValue) {
