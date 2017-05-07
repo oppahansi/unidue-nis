@@ -8,6 +8,7 @@ package com.oppahansi.nis.ss17.tasks.oppa.impl;
 public class Factorization {
     public static String factorize(int number) {
         StringBuilder result = new StringBuilder();
+
         for (int i = 2; i < number; ) {
             if (isPrim(i) && number % i == 0 && !isPrim(number)) {
                 result.append(i).append("*");
@@ -17,7 +18,9 @@ public class Factorization {
                 i++;
             }
         }
+
         result.append(number);
+
         return result.toString();
     }
 
@@ -25,6 +28,7 @@ public class Factorization {
         for (int i = 2; i <= Math.sqrt(number); i++) {
             if (number % i == 0) return false;
         }
+
         return true;
     }
 }

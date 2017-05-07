@@ -45,6 +45,7 @@ public class Vigenere {
             for (int i = 0; i < input.length() / key.length(); i++) {
                 result.append(key);
             }
+
             return result.toString();
         } else {
             for (int i = 0; i < input.length() / key.length(); i++) {
