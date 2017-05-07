@@ -13,7 +13,7 @@ public class Vigenere {
      * Decrytps a vigenere chiffre text using the given key.
      *
      * @param chiffre Enrypted message
-     * @param key Encryption key
+     * @param key     Encryption key
      * @return
      */
     public static String decryptChiffreWithKey(String chiffre, String key) {
@@ -36,7 +36,7 @@ public class Vigenere {
      * Encrypts plain text using the given key.
      *
      * @param plain Text to encrypt
-     * @param key Encryption key
+     * @param key   Encryption key
      * @return
      */
     public static String enryptPlainWithKey(String plain, String key) {
@@ -57,7 +57,7 @@ public class Vigenere {
      * Helper method to expand the key to given input string.
      *
      * @param input Message
-     * @param key Encryption key
+     * @param key   Encryption key
      * @return
      */
     private static String expandKey(String input, String key) {
