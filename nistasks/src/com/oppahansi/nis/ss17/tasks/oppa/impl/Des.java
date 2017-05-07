@@ -16,7 +16,7 @@ public class Des {
     /**
      * Returns the calculated key for the given round.
      *
-     * @param key Initial key
+     * @param key   Initial key
      * @param round Required round for calculation
      * @return
      */
@@ -30,7 +30,7 @@ public class Des {
 
     /**
      * <p>The 64-bit key is permuted according to the PC-1 table.</p>
-     *
+     * <p>
      * <p>Note only 56 bits of the original key appear in the permuted key.</p>
      *
      * @param key Initial key
@@ -57,16 +57,14 @@ public class Des {
     private static void prepateForPC2() {
         for (int i = 1; i < SHIFTED_PC1_LEFT_RIGHT_HALVES[0].length; i++) {
             if (i == 1 || i == 8 || i == 15) {
-                SHIFTED_PC1_LEFT_RIGHT_HALVES[0][i] = leftShiftString(SHIFTED_PC1_LEFT_RIGHT_HALVES[0][i-1]);
-                SHIFTED_PC1_LEFT_RIGHT_HALVES[1][i] = leftShiftString(SHIFTED_PC1_LEFT_RIGHT_HALVES[1][i-1]);
-            }
-            else if (i >= 2 && i <= 7) {
-                SHIFTED_PC1_LEFT_RIGHT_HALVES[0][i] = leftShiftString(SHIFTED_PC1_LEFT_RIGHT_HALVES[0][i-1], 2);
-                SHIFTED_PC1_LEFT_RIGHT_HALVES[1][i] = leftShiftString(SHIFTED_PC1_LEFT_RIGHT_HALVES[1][i-1], 2);
-            }
-            else if (i >= 9 && i <= 14) {
-                SHIFTED_PC1_LEFT_RIGHT_HALVES[0][i] = leftShiftString(SHIFTED_PC1_LEFT_RIGHT_HALVES[0][i-1], 2);
-                SHIFTED_PC1_LEFT_RIGHT_HALVES[1][i] = leftShiftString(SHIFTED_PC1_LEFT_RIGHT_HALVES[1][i-1], 2);
+                SHIFTED_PC1_LEFT_RIGHT_HALVES[0][i] = leftShiftString(SHIFTED_PC1_LEFT_RIGHT_HALVES[0][i - 1]);
+                SHIFTED_PC1_LEFT_RIGHT_HALVES[1][i] = leftShiftString(SHIFTED_PC1_LEFT_RIGHT_HALVES[1][i - 1]);
+            } else if (i >= 2 && i <= 7) {
+                SHIFTED_PC1_LEFT_RIGHT_HALVES[0][i] = leftShiftString(SHIFTED_PC1_LEFT_RIGHT_HALVES[0][i - 1], 2);
+                SHIFTED_PC1_LEFT_RIGHT_HALVES[1][i] = leftShiftString(SHIFTED_PC1_LEFT_RIGHT_HALVES[1][i - 1], 2);
+            } else if (i >= 9 && i <= 14) {
+                SHIFTED_PC1_LEFT_RIGHT_HALVES[0][i] = leftShiftString(SHIFTED_PC1_LEFT_RIGHT_HALVES[0][i - 1], 2);
+                SHIFTED_PC1_LEFT_RIGHT_HALVES[1][i] = leftShiftString(SHIFTED_PC1_LEFT_RIGHT_HALVES[1][i - 1], 2);
             }
         }
 
@@ -94,8 +92,7 @@ public class Des {
     private static String leftShiftString(String input, int amount) {
         if (amount == 1) {
             return leftShiftString(input);
-        }
-        else {
+        } else {
             return leftShiftString(leftShiftString(input), amount - 1);
         }
     }
