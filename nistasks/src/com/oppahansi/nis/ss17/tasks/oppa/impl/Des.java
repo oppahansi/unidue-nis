@@ -6,7 +6,7 @@ package com.oppahansi.nis.ss17.tasks.oppa.impl;
  * @author Alexander Schellenberg
  */
 public class Des {
-    public  static String getKeyForRound(String key, int round) {
+    public static String getKeyForRound(String key, int round) {
         return "";
     }
 
