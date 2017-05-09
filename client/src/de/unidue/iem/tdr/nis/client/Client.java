@@ -3,6 +3,9 @@ package de.unidue.iem.tdr.nis.client;
 import com.oppahansi.nis.ss17.tasks.oppa.impl.*;
 
 /**
+ * This Class is provided by by University Duisburg-Essen.
+ * For learning purpose only.
+ * <p>
  * Diese Klasse ermoeglicht das Abrufen von Aufgaben vom Server und die
  * Implementierung der dazugehoerigen Loesungen.
  * <p>
@@ -15,16 +18,10 @@ import com.oppahansi.nis.ss17.tasks.oppa.impl.*;
  */
 public class Client implements TaskDefs {
 
-    private Connection con;
-    private TaskObject currentTask;
-
     /* hier bitte die Matrikelnummer eintragen */
     private final int matrikelnr = 1234567;
-
     /* hier bitte das TMT-Passwort eintragen */
     private final String password = "MEIN_PASSWORT";
-
-
     /* Aufgaben, die bearbeitet werden sollen */
     private final int[] tasks = {
             TASK_CLEARTEXT, TASK_XOR, TASK_MODULO,
@@ -36,17 +33,27 @@ public class Client implements TaskDefs {
             TASK_RSA_ENCRYPTION, TASK_RSA_DECRYPTION, TASK_ELGAMAL_ENCRYPTION,
             TASK_ELGAMAL_DECRYPTION
     };
+    private Connection con;
+    private TaskObject currentTask;
 
     /**
      * Klassenkonstruktor. Baut die Verbindung zum Server auf.
      */
     public Client() {
         con = new Connection();
-        if (con.auth(Credentials.MAT_NUM, Credentials.PWD)) { // use here your credentials, matrikelnr, password
+        if (con.auth(Credentials.MAT_NUM, Credentials.PWD)) { // use here your credentials: matrikelnr, password
             System.out.println("Anmeldung erfolgreich.");
         } else {
             System.out.println("Anmeldung nicht erfolgreich.");
         }
+    }
+
+    public static void main(String[] args) {
+        Client c = new Client();
+        if (c.isReady()) {
+            c.taskLoop();
+        }
+        c.close();
     }
 
     /**
@@ -66,7 +73,9 @@ public class Client implements TaskDefs {
     }
 
     /**
-     * Durchlaeuft eine Liste von Aufgaben und fordert diese vom Server an.
+     * <p>Durchlaeuft eine Liste von Aufgaben und fordert diese vom Server an.</p>
+     *
+     * <p>Adjusted for my own Implementations - adjust here for your own classes / implementations.</p>
      */
     public void taskLoop() {
         String solution;
@@ -108,13 +117,5 @@ public class Client implements TaskDefs {
                 System.out.println("Aufgabe " + tasks[i] + ": L�sung falsch");
             }
         }
-    }
-
-    public static void main(String[] args) {
-        Client c = new Client();
-        if (c.isReady()) {
-            c.taskLoop();
-        }
-        c.close();
     }
 }

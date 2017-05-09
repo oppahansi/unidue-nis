@@ -1,30 +1,32 @@
 package de.unidue.iem.tdr.nis.client;
 
 /**
+ * This Class is provided by by University Duisburg-Essen.
+ * For learning purpose only.
+ * <p>
  * Stellt Konstanten f�r die verschiedenen Aufgabentypen zur Verf�gung.
- * 
  */
 public interface TaskDefs {
-	static final int TASK_CLEARTEXT = 1;
-	static final int TASK_XOR = 2;
-	static final int TASK_MODULO = 3;
-	static final int TASK_FACTORIZATION = 4;
-	static final int TASK_VIGENERE = 5;
-	static final int TASK_DES_KEYSCHEDULE = 6;
-	static final int TASK_DES_RBLOCK = 7;
-	static final int TASK_DES_FEISTEL = 8;
-	static final int TASK_DES_ROUND = 9;
-	static final int TASK_AES_GF8 = 10;
-	static final int TASK_AES_KEYEXPANSION = 11;
-	static final int TASK_AES_MIXCOLUMNS = 12;
-	static final int TASK_AES_TRANSFORMATION = 13;
-	static final int TASK_AES_3ROUNDS = 14;
-	static final int TASK_RC4_LOOP = 15;
-	static final int TASK_RC4_KEYSCHEDULE = 16;
-	static final int TASK_RC4_ENCRYPTION = 17;
-	static final int TASK_DIFFIEHELLMAN = 18;
-	static final int TASK_RSA_ENCRYPTION = 19;
-	static final int TASK_RSA_DECRYPTION = 20;
-	static final int TASK_ELGAMAL_ENCRYPTION = 21;
-	static final int TASK_ELGAMAL_DECRYPTION = 22;
+    int TASK_CLEARTEXT = 1;
+    int TASK_XOR = 2;
+    int TASK_MODULO = 3;
+    int TASK_FACTORIZATION = 4;
+    int TASK_VIGENERE = 5;
+    int TASK_DES_KEYSCHEDULE = 6;
+    int TASK_DES_RBLOCK = 7;
+    int TASK_DES_FEISTEL = 8;
+    int TASK_DES_ROUND = 9;
+    int TASK_AES_GF8 = 10;
+    int TASK_AES_KEYEXPANSION = 11;
+    int TASK_AES_MIXCOLUMNS = 12;
+    int TASK_AES_TRANSFORMATION = 13;
+    int TASK_AES_3ROUNDS = 14;
+    int TASK_RC4_LOOP = 15;
+    int TASK_RC4_KEYSCHEDULE = 16;
+    int TASK_RC4_ENCRYPTION = 17;
+    int TASK_DIFFIEHELLMAN = 18;
+    int TASK_RSA_ENCRYPTION = 19;
+    int TASK_RSA_DECRYPTION = 20;
+    int TASK_ELGAMAL_ENCRYPTION = 21;
+    int TASK_ELGAMAL_DECRYPTION = 22;
 }

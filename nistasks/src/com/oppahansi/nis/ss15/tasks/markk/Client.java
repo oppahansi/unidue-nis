@@ -5,6 +5,10 @@ package com.oppahansi.nis.ss15.tasks.markk;
  * Aufgaben implementiert von Mark Kunze
  */
 
+import de.unidue.iem.tdr.nis.client.Connection;
+import de.unidue.iem.tdr.nis.client.TaskDefs;
+import de.unidue.iem.tdr.nis.client.TaskObject;
+
 import java.util.Random;
 
 /**
