@@ -10,14 +10,14 @@ import com.oppahansi.nis.ss17.tasks.oppa.util.Constants;
 public class Des {
 
     /**
-     * LEFT_RIGHT_KEY_HALVES contains the left shifted left and right halves of the permuted key
+     * C_D_BLOCKS contains the left shifted left and right halves of the permuted key
      */
-    private static String[][] LEFT_RIGHT_KEY_HALVES = new String[2][16];
+    private static String[][] C_D_BLOCKS = new String[2][16];
 
     /**
-     * Combined LEFT_RIGHT_KEY_HALVES after left shifts have been done
+     * Combined C_D_BLOCKS after left shifts have been done
      */
-    private static String[] COMBINED_LEFT_RIGHT_HALVES = new String[16];
+    private static String[] COMBINED_C_D_BLOCKS = new String[16];
 
     /**
      * Generated ROUND_KEYS after the DES key schedule
@@ -58,29 +58,29 @@ public class Des {
             right.append(key.charAt(r - 1));
         }
 
-        LEFT_RIGHT_KEY_HALVES[0][0] = leftShift(left.toString());
-        LEFT_RIGHT_KEY_HALVES[1][0] = leftShift(right.toString());
+        C_D_BLOCKS[0][0] = leftShift(left.toString());
+        C_D_BLOCKS[1][0] = leftShift(right.toString());
     }
 
     /**
      * Genereting left shifted key halves pairs and combining them for PC-2.
      */
     private static void prepateForPC2() {
-        for (int i = 1; i < LEFT_RIGHT_KEY_HALVES[0].length; i++) {
+        for (int i = 1; i < C_D_BLOCKS[0].length; i++) {
             if (i == 1 || i == 8 || i == 15) {
-                LEFT_RIGHT_KEY_HALVES[0][i] = leftShift(LEFT_RIGHT_KEY_HALVES[0][i - 1]);
-                LEFT_RIGHT_KEY_HALVES[1][i] = leftShift(LEFT_RIGHT_KEY_HALVES[1][i - 1]);
+                C_D_BLOCKS[0][i] = leftShift(C_D_BLOCKS[0][i - 1]);
+                C_D_BLOCKS[1][i] = leftShift(C_D_BLOCKS[1][i - 1]);
             } else if (i >= 2 && i <= 7) {
-                LEFT_RIGHT_KEY_HALVES[0][i] = leftShift(LEFT_RIGHT_KEY_HALVES[0][i - 1], 2);
-                LEFT_RIGHT_KEY_HALVES[1][i] = leftShift(LEFT_RIGHT_KEY_HALVES[1][i - 1], 2);
+                C_D_BLOCKS[0][i] = leftShift(C_D_BLOCKS[0][i - 1], 2);
+                C_D_BLOCKS[1][i] = leftShift(C_D_BLOCKS[1][i - 1], 2);
             } else if (i >= 9 && i <= 14) {
-                LEFT_RIGHT_KEY_HALVES[0][i] = leftShift(LEFT_RIGHT_KEY_HALVES[0][i - 1], 2);
-                LEFT_RIGHT_KEY_HALVES[1][i] = leftShift(LEFT_RIGHT_KEY_HALVES[1][i - 1], 2);
+                C_D_BLOCKS[0][i] = leftShift(C_D_BLOCKS[0][i - 1], 2);
+                C_D_BLOCKS[1][i] = leftShift(C_D_BLOCKS[1][i - 1], 2);
             }
         }
 
-        for (int i = 0; i < COMBINED_LEFT_RIGHT_HALVES.length; i++) {
-            COMBINED_LEFT_RIGHT_HALVES[i] = LEFT_RIGHT_KEY_HALVES[0][i] + LEFT_RIGHT_KEY_HALVES[1][i];
+        for (int i = 0; i < COMBINED_C_D_BLOCKS.length; i++) {
+            COMBINED_C_D_BLOCKS[i] = C_D_BLOCKS[0][i] + C_D_BLOCKS[1][i];
         }
     }
 
@@ -116,7 +116,7 @@ public class Des {
             StringBuilder roundKey = new StringBuilder();
 
             for (Integer k : Constants.PC2) {
-                roundKey.append(COMBINED_LEFT_RIGHT_HALVES[i].charAt(k - 1));
+                roundKey.append(COMBINED_C_D_BLOCKS[i].charAt(k - 1));
             }
 
             ROUND_KEYS[i] = roundKey.toString();
