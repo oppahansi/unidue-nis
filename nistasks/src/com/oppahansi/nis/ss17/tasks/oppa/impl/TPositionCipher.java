@@ -1,5 +1,7 @@
 package com.oppahansi.nis.ss17.tasks.oppa.impl;
 
+import com.oppahansi.nis.ss17.tasks.oppa.util.Toolbox;
+
 import java.util.ArrayList;
 
 /**
@@ -23,7 +25,7 @@ public class TPositionCipher {
      * @return Encrypted text
      */
     public static String encryptColumnar(String text, String key) {
-        text = prepareText(text);
+        text = Toolbox.cleanText(text);
         initVariables(text, key);
 
         for (int i = 0; i < rows; i++) {
@@ -58,7 +60,7 @@ public class TPositionCipher {
      * @return Plain text message
      */
     public static String decryptColumnar(String text, String key) {
-        text = prepareText(text);
+        text = Toolbox.cleanText(text);
         initVariables(text, key);
 
         if (text.length() % key.length() == 0) {
@@ -103,19 +105,6 @@ public class TPositionCipher {
         }
 
         return result.toString();
-    }
-
-    /**
-     * Removes all special characters from the given text
-     *
-     * @param text Text to remove special characters from
-     * @return
-     */
-    private static String prepareText(String text) {
-        text = text.replaceAll("[-+.^:, ]", "");
-        text = text.toUpperCase();
-
-        return text;
     }
 
     /**
