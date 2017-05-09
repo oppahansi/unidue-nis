@@ -88,4 +88,18 @@ public class Toolbox {
 
         return text;
     }
+
+    /**
+     * Method to determine whether or not the number given is a prime number.
+     *
+     * @param number Number to check
+     * @return
+     */
+    public static boolean isPrim(int number) {
+        for (int i = 2; i <= Math.sqrt(number); i++) {
+            if (number % i == 0) return false;
+        }
+
+        return true;
+    }
 }
