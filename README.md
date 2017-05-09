@@ -9,6 +9,10 @@ The project code you turn in at the end of the semester will be thoroughly inspe
 Expect to be caught.  
 DON'T USE MY CODE :)  
 
+## Documentation
+
+[https://oppahansi.github.io/unidue-nis/](https://oppahansi.github.io/unidue-nis/)
+
 ## Contents
 
 ### ATM:
