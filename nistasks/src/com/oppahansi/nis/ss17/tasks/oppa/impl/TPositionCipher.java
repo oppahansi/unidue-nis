@@ -93,8 +93,8 @@ public class TPositionCipher {
 
             for (int i = 0; i < rows + 1; i++) {
                 if (i >= rows) {
-                    for (Character markkedColumn : markedColumns.toCharArray()) {
-                        result.append(splitText.get(Integer.parseInt(markkedColumn.toString()) - 1).charAt(i));
+                    for (Character markedColumn : markedColumns.toCharArray()) {
+                        result.append(splitText.get(Integer.parseInt(markedColumn.toString()) - 1).charAt(i));
                     }
                 } else {
                     for (Character column : key.toCharArray()) {
