@@ -15,14 +15,17 @@ DON'T USE MY CODE :)
 
 ## Contents
 
-### ATM:
+### Tasks implemented right now(Task list in root folder of this repository):
 
-- Modulo
 - Xor
+- Modulo
+- Factorization
 - Vigenere
 - DES key schedule
+- DES r block
+- DES feistel
+- DES one round
+
+### Bonus (not required for the project)
 - Transposition Cipher (simple Columnar Transposition)
-- more later..
-
-
-
+- DES Encryption and Decryption of HEX and BINARY Strings
