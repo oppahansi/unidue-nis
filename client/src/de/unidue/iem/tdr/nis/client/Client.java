@@ -79,7 +79,7 @@ public class Client implements TaskDefs {
      */
     public void taskLoop() {
         String solution;
-        for (int i = 0; i < tasks.length; i++) {
+        for (int i = 7; i < 8; i++) {
             switch (tasks[i]) {
                 case TASK_CLEARTEXT:
                     currentTask = con.getTask(tasks[i]);
@@ -107,8 +107,11 @@ public class Client implements TaskDefs {
                     break;
                 case TASK_DES_RBLOCK:
                     currentTask = con.getTask(tasks[i]);
-                    System.out.println(currentTask.getStringArray(0) + " " + currentTask.getIntArray(0));
                     solution = Des.getRBlockForRound(currentTask.getStringArray(0), currentTask.getIntArray(0));
+                    break;
+                case TASK_DES_FEISTEL:
+                    currentTask = con.getTask(tasks[i]);
+                    solution = Des.applyFeistel(currentTask.getStringArray(0), currentTask.getStringArray(1));
                     break;
                 default:
                     currentTask = con.getTask(tasks[i]);

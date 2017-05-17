@@ -61,6 +61,18 @@ public class Des {
     }
 
     /**
+     * <p>Applying the F-Function once with given input 64bit binary String.</p>
+     * <p>First 32 bits are the L-Block, last 32bits are the R-Block</p>
+     *
+     * @param input 64bit binary String, L-R-Block
+     * @param roundKey 48bit binary String, round key
+     * @return L xor R : 32bit binary String
+     */
+    public static String applyFeistel(String input, String roundKey) {
+        return Xor.xorBinaryStrings(input.substring(0, 32), rBlockFunction(input.substring(32, input.length()), roundKey));
+    }
+
+    /**
      * Creates the Round Keys for the given key.
      *
      * @param key 64bit BINARY String
