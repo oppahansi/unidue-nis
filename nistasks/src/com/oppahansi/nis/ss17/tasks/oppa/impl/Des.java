@@ -329,6 +329,11 @@ public class Des {
         return result.toString();
     }
 
+    /**
+     * Applies the final Permutation using the Final Permutation Table
+     *
+     * @return 64bit binary String
+     */
     private static String applyFinalPermutation() {
         String r_l_last = l_r_blocks[1][16] + l_r_blocks[0][16];
         StringBuilder result = new StringBuilder();
