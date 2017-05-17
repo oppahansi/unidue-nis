@@ -26,6 +26,11 @@ public class Des {
     private static String[] round_keys = new String[16];
 
     /**
+     *  l_r_blocks contains the calculated L- and R-Blocks
+     */
+    private static String[][] l_r_blocks = new String[2][17];
+
+    /**
      * Returns the calculated key for the given round.
      *
      * @param key   Initial key
@@ -33,18 +38,44 @@ public class Des {
      * @return
      */
     public static String getKeyForRound(String key, int round) {
-        permutedChoiceOne(key);
-        leftShiftCdBlocks();
-        combineCdBlocks();
-        permutedChoiceTwo();
+        createRoundKeys(key);
 
         return round_keys[round - 1];
     }
 
     /**
+     * <p>Gets an R-Block for the given input and the given round.</p>
+     * <p>Kinda only used for the University task 7.</p>
+     *
+     * @param input 64bit BINARY String
+     * @param round Round nuber
+     * @return 32bit String
+     */
+    public static String getRBlockForRound(String input, int round) {
+        createRoundKeys("0000000000000000000000000000000000000000000000000000000000000000");
+
+        initialPermutation(input);
+        initializeLRBlocks();
+
+        return l_r_blocks[1][round];
+    }
+
+    /**
+     * Creates the Round Keys for the given key.
+     *
+     * @param key 64bit BINARY String
+     */
+    private static void createRoundKeys(String key) {
+        permutedChoiceOne(key);
+        leftShiftCdBlocks();
+        combineCdBlocks();
+        permutedChoiceTwo();
+    }
+
+    /**
      * <p>The 64-bit key is permuted according to the PC-1 table.</p>
      * <p>
-     * <p>Note only 56 bits of the original key appear in the permuted key.</p>
+     * <p><strong>Note</strong> only 56 bits of the original key appear in the permuted key.</p>
      *
      * @param key Initial key
      */
@@ -52,11 +83,11 @@ public class Des {
         StringBuilder initial_c_block = new StringBuilder();
         StringBuilder initial_d_block = new StringBuilder();
 
-        for (Integer l : Constants.PC1_LEFT) {
+        for (Integer l : Constants.PC1_LEFT_TABLE) {
             initial_c_block.append(key.charAt(l - 1));
         }
 
-        for (Integer r : Constants.PC1_RIGHT) {
+        for (Integer r : Constants.PC1_RIGHT_TABLE) {
             initial_d_block.append(key.charAt(r - 1));
         }
 
@@ -108,11 +139,102 @@ public class Des {
         for (int i = 0; i < round_keys.length; i++) {
             StringBuilder roundKey = new StringBuilder();
 
-            for (Integer k : Constants.PC2) {
+            for (Integer k : Constants.PC2_TABLE) {
                 roundKey.append(combined_c_d_blocks[i].charAt(k - 1));
             }
 
             round_keys[i] = roundKey.toString();
         }
+    }
+
+    /**
+     * Applies the Initial Permutation using the IP-Table on the given message and initializes the first L- and R-Block values
+     *
+     * @param message 64bit BINARY String
+     */
+    private static void initialPermutation(String message) {
+        StringBuilder result = new StringBuilder();
+
+        for (Integer ip : Constants.IP_TABLE) {
+            result.append(message.charAt(ip - 1));
+        }
+
+        l_r_blocks[0][0] = result.toString().substring(0, 32);
+        l_r_blocks[1][0] = result.toString().substring(32, result.toString().length());
+    }
+
+    /**
+     * Calculates and initializes the L-R-Blocks
+     */
+    private static void initializeLRBlocks() {
+        for (int i = 1; i < 17; i++) {
+            l_r_blocks[0][i] = l_r_blocks[1][i - 1];
+            l_r_blocks[1][i] = Xor.xorBinaryStrings(l_r_blocks[0][i - 1], rBlockFunction(l_r_blocks[1][i - 1], round_keys[i - 1]));
+        }
+    }
+
+    /**
+     * Performs all needed R-Block operations.
+     *
+     * @param r_Block 32bit BINARY String
+     * @param key 48bit String Round key
+     * @return 32bit BINARY String
+     */
+    private static String rBlockFunction(String r_Block, String key) {
+        String sBoxResult = sBoxFunction(Xor.xorBinaryStrings(expandRWithETable(r_Block), key));
+
+        return applyPermutation(sBoxResult);
+    }
+
+    /**
+     * Expands the R-Block using the E-Table
+     *
+     * @param r_Block 32bit BINARY String
+     * @return 48bit BINARY String
+     */
+    private static String expandRWithETable(String r_Block) {
+        StringBuilder result = new StringBuilder();
+
+        for (Integer e : Constants.E_TABLE) {
+            result.append(r_Block.charAt(e - 1));
+        }
+
+        return result.toString();
+    }
+
+    /**
+     * Performs the S-Box calculation.
+     *
+     * @param input 48bit BINARY String
+     * @return 48bit BINARY String
+     */
+    private static String sBoxFunction(String input) {
+        String[] s_boxes = Toolbox.splitStringIntoChunks(input, 6);
+        StringBuilder result = new StringBuilder();
+
+        for (int i = 0; i < s_boxes.length; i++) {
+            int row = Toolbox.BinToDec(s_boxes[i].charAt(0) + "" + s_boxes[i].charAt(5));
+            int column = Toolbox.BinToDec(s_boxes[i].substring(1, 5));
+
+            result.append(Constants.BINARY[Toolbox.GET_S_BOX(i + 1)[row][column]]);
+        }
+
+        return result.toString();
+    }
+
+    /**
+     * Reduces the calculated 48bit R-Block to 32bit BINARY String using the P-Table
+     *
+     * @param input 48bit BINARY String
+     * @return 32bit binry String
+     */
+    private static String applyPermutation(String input) {
+        StringBuilder result = new StringBuilder();
+
+        for (Integer p : Constants.P_TABLE) {
+            result.append(input.charAt(p - 1));
+        }
+
+        return result.toString();
     }
 }

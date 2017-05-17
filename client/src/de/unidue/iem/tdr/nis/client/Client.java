@@ -105,6 +105,11 @@ public class Client implements TaskDefs {
                     currentTask = con.getTask(tasks[i]);
                     solution = Des.getKeyForRound(currentTask.getStringArray(0), currentTask.getIntArray(0));
                     break;
+                case TASK_DES_RBLOCK:
+                    currentTask = con.getTask(tasks[i]);
+                    System.out.println(currentTask.getStringArray(0) + " " + currentTask.getIntArray(0));
+                    solution = Des.getRBlockForRound(currentTask.getStringArray(0), currentTask.getIntArray(0));
+                    break;
                 default:
                     currentTask = con.getTask(tasks[i]);
                     solution = "Nicht implementiert!";

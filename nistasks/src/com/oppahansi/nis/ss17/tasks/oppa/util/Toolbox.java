@@ -23,6 +23,41 @@ public class Toolbox {
     }
 
     /**
+     * Converts a decimal number to a BINARY String
+     *
+     * @param decimalValue
+     * @return
+     */
+    public static String DecToBin(int decimalValue) {
+        StringBuilder result = new StringBuilder();
+
+        while(decimalValue > 1) {
+            result.insert(0, decimalValue % 2);
+            decimalValue /= 2;
+        }
+
+        result.insert(0, decimalValue);
+
+        return result.toString();
+    }
+
+    /**
+     * Converts a BINARY String to a decimal Number
+     *
+     * @param binaryValue
+     * @return
+     */
+    public static int BinToDec(String binaryValue) {
+        int result = 0;
+
+        for (int i = binaryValue.length() - 1; i >= 0; i--) {
+            result += (int) (Integer.parseInt(binaryValue.charAt(i) + "") * Math.pow(2, binaryValue.length() - 1 - i));
+        }
+
+        return result;
+    }
+
+    /**
      * Left shifts the characters in a string by 1
      *
      * @param input
@@ -63,7 +98,7 @@ public class Toolbox {
     }
 
     /**
-     * Helper method to remove zeros from the beginning of the binary string.
+     * Helper method to remove zeros from the beginning of the BINARY string.
      *
      * @param binaryString
      * @return
@@ -101,5 +136,42 @@ public class Toolbox {
         }
 
         return true;
+    }
+
+    /**
+     * Method to splti a String into several chunks
+     *
+     * @param input String to split
+     * @param chunkSize Size of a chunk
+     * @return String[]
+     */
+    public static String[] splitStringIntoChunks(String input, int chunkSize) {
+        String[] result = new String[input.length() % chunkSize == 0 ? input.length() / chunkSize : input.length() / chunkSize + 1];
+
+        for (int i = 0; i < result.length - 1; i++) {
+            result[i] = input.substring(0, chunkSize);
+            input = input.substring(6, input.length());
+        }
+
+        result[result.length - 1] = input;
+
+        return result;
+    }
+
+    /**
+     * Returns the required S-Box
+     *
+     * @param sBoxNumber S-Box number
+     * @return S-Box int-Array[][]
+     */
+    public static int[][] GET_S_BOX(int sBoxNumber) {
+        if (sBoxNumber == 1) return Constants.S1_BOX;
+        else if (sBoxNumber == 2) return  Constants.S2_BOX;
+        else if (sBoxNumber == 3) return  Constants.S3_BOX;
+        else if (sBoxNumber == 4) return  Constants.S4_BOX;
+        else if (sBoxNumber == 5) return  Constants.S5_BOX;
+        else if (sBoxNumber == 6) return  Constants.S6_BOX;
+        else if (sBoxNumber == 7) return  Constants.S7_BOX;
+        else return  Constants.S8_BOX;
     }
 }
