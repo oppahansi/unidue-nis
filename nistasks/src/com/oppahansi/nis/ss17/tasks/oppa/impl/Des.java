@@ -57,6 +57,32 @@ public class Des {
     }
 
     /**
+     * Decrypts a binary message with the given key.
+     *
+     * @param binMessage Message to decrytp as binary String
+     * @param binKey Key used to encrypt
+     * @return Binary String - decrypted Message
+     */
+    public static String decryptBinMessage(String binMessage, String binKey) {
+        createRoundKeys(binKey);
+        initialPermutation(binMessage);
+        initializeLRBlocksDecryption();
+
+        return applyFinalPermutation();
+    }
+
+    /**
+     * Decrypts a hex message with the given key.
+     *
+     * @param hexMessage Message to decrytp as hex String
+     * @param hexKey Key used to encrypt
+     * @return Hex String - decrypted Message
+     */
+    public static String decryptHexMessage(String hexMessage, String hexKey) {
+        return Toolbox.BinToHex(decryptBinMessage(Toolbox.HexToBin(hexMessage), Toolbox.HexToBin(hexKey)));
+    }
+
+    /**
      * Returns the calculated key for the given round.
      *
      * @param key   Initial key
@@ -225,6 +251,16 @@ public class Des {
         for (int i = 1; i < 17; i++) {
             l_r_blocks[0][i] = l_r_blocks[1][i - 1];
             l_r_blocks[1][i] = Xor.xorBinaryStrings(l_r_blocks[0][i - 1], rBlockFunction(l_r_blocks[1][i - 1], round_keys[i - 1]));
+        }
+    }
+
+    /**
+     * Calculates and initializes the L-R-Blocks for decryption
+     */
+    private static void initializeLRBlocksDecryption() {
+        for (int i = 1; i < 17; i++) {
+            l_r_blocks[0][i] = l_r_blocks[1][i - 1];
+            l_r_blocks[1][i] = Xor.xorBinaryStrings(l_r_blocks[0][i - 1], rBlockFunction(l_r_blocks[1][i - 1], round_keys[round_keys.length - i]));
         }
     }
 
