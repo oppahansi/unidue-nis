@@ -72,6 +72,29 @@ public class Des {
         return Xor.xorBinaryStrings(input.substring(0, 32), rBlockFunction(input.substring(32, input.length()), roundKey));
     }
 
+
+    public static void main(String[] args) {
+        System.out.println(calculateOneRound("01101001000001101011100000110111", "01001111100111010100111100000011", "1110011101010001001011010010110110010110110011011110001101011010", 12));
+        System.out.println("0100111110011101010011110000001100011001111011011110011110011001");
+    }
+
+    /**
+     * Calculating one round
+     *
+     * @param l_block 32bit binary String - L-Block
+     * @param r_block 32bit binary String - R-Block
+     * @param key 48bit binary String - Key
+     * @param round round number
+     * @return 64bit binary String
+     */
+    public static String calculateOneRound(String l_block, String r_block, String key, int round) {
+        createRoundKeys(key);
+        String l_block_next = r_block;
+        r_block = Xor.xorBinaryStrings(l_block, rBlockFunction(r_block, round_keys[round - 1]));
+
+        return l_block_next+ r_block;
+    }
+
     /**
      * Creates the Round Keys for the given key.
      *
