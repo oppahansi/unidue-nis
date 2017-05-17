@@ -27,5 +27,6 @@ DON'T USE MY CODE :)
 - DES one round
 
 ### Bonus (not required for the project)
+
 - Transposition Cipher (simple Columnar Transposition)
 - DES Encryption and Decryption of HEX and BINARY Strings
