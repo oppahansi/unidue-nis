@@ -31,6 +31,32 @@ public class Des {
     private static String[][] l_r_blocks = new String[2][17];
 
     /**
+     * Encrypts the given binary message with the given binary key.
+     *
+     * @param binMessage Message to encrypt as binary String
+     * @param binKey Key used for encryption as binary String
+     * @return Binary String - encrypted message
+     */
+    public static String encryptBinMessage(String binMessage, String binKey) {
+        createRoundKeys(binKey);
+        initialPermutation(binMessage);
+        initializeLRBlocks();
+
+        return applyFinalPermutation();
+    }
+
+    /**
+     * Encrypts the given hex message with the given hex key
+     *
+     * @param hexMessage Message to encrypt as hex String
+     * @param hexKey Key used for encryption as hex String
+     * @return Hex String - encrypted Message
+     */
+    public static String encryptHexMessage(String hexMessage, String hexKey) {
+        return Toolbox.BinToHex(encryptBinMessage(Toolbox.HexToBin(hexMessage), Toolbox.HexToBin(hexKey)));
+    }
+
+    /**
      * Returns the calculated key for the given round.
      *
      * @param key   Initial key
@@ -262,6 +288,17 @@ public class Des {
 
         for (Integer p : Constants.P_TABLE) {
             result.append(input.charAt(p - 1));
+        }
+
+        return result.toString();
+    }
+
+    private static String applyFinalPermutation() {
+        String r_l_last = l_r_blocks[1][16] + l_r_blocks[0][16];
+        StringBuilder result = new StringBuilder();
+
+        for (Integer fp : Constants.FINAL_PERMUTATION_TABLE) {
+            result.append(r_l_last.charAt(fp - 1));
         }
 
         return result.toString();

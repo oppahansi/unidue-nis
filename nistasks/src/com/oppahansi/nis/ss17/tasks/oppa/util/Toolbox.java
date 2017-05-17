@@ -16,7 +16,18 @@ public class Toolbox {
         StringBuilder result = new StringBuilder();
 
         for (int i = 0; i < hexValue.length(); i++) {
-            result.append(Constants.Binary.values()[Constants.HEX_ALPHABET.indexOf(hexValue.toUpperCase().charAt(i))]);
+            result.append(Constants.BINARY[Constants.HEX_ALPHABET.indexOf(hexValue.toUpperCase().charAt(i))]);
+        }
+
+        return result.toString();
+    }
+
+    public static String BinToHex(String binValue) {
+        StringBuilder result = new StringBuilder();
+        String[] binValueChunks = Toolbox.splitStringIntoChunks(binValue, 4);
+
+        for (String chunk : binValueChunks) {
+            result.append(Constants.HEX[BinToDec(chunk)]);
         }
 
         return result.toString();
@@ -150,7 +161,7 @@ public class Toolbox {
 
         for (int i = 0; i < result.length - 1; i++) {
             result[i] = input.substring(0, chunkSize);
-            input = input.substring(6, input.length());
+            input = input.substring(chunkSize, input.length());
         }
 
         result[result.length - 1] = input;

@@ -18,39 +18,6 @@ public class Constants {
     public static String ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
     /**
-     * Binary enum with corresponding String values
-     */
-    enum Binary {
-        ZERO("0000"),
-        ONE("0001"),
-        TWO("0010"),
-        THREE("0011"),
-        FOUR("0100"),
-        FIVE("0101"),
-        SIX("0110"),
-        SEVEN("0111"),
-        EIGHT("1000"),
-        NINE("1001"),
-        TEN("1010"),
-        ELEVEN("1011"),
-        TWELVE("1100"),
-        THIRTEEN("1101"),
-        FOURTEEN("1110"),
-        FIFTEEN("1111");
-
-        private String value;
-
-        Binary(final String value) {
-            this.value = value;
-        }
-
-        @Override
-        public String toString() {
-            return value;
-        }
-    }
-
-    /**
      * Binary array with corresponding index to String values
      */
     public static String[] BINARY = new String[] {
@@ -73,37 +40,26 @@ public class Constants {
     };
 
     /**
-     * Hex enum with corresponding String values
+     * Hex array with corresponding index to String values
      */
-    enum Hex {
-        ZERO("0"),
-        ONE("1"),
-        TWO("2"),
-        THREE("3"),
-        FOUR("4"),
-        FIVE("5"),
-        SIX("6"),
-        SEVEN("7"),
-        EIGHT("8"),
-        NINE("9"),
-        TEN("A"),
-        ELEVEN("B"),
-        TWELVE("C"),
-        THIRTEEN("D"),
-        FOURTEEN("E"),
-        FIFTEEN("F");
-
-        private String value;
-
-        Hex(final String value) {
-            this.value = value;
-        }
-
-        @Override
-        public String toString() {
-            return value;
-        }
-    }
+    public static String[] HEX = new String[] {
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F"
+    };
 
     /**
      * PC-1 Table(Permuted choice 1) part applied on the first 32 bit of a given DES-Key
@@ -259,5 +215,16 @@ public class Constants {
             32, 27, 3, 9,
             19, 13, 30, 6,
             22, 11, 4, 25
+    };
+
+    public static final int[] FINAL_PERMUTATION_TABLE = new int[] {
+            40, 8, 48, 16, 56, 24, 64, 32,
+            39, 7, 47, 15, 55, 23, 63, 31,
+            38, 6, 46, 14, 54, 22, 62, 30,
+            37, 5, 45, 13, 53, 21, 61, 29,
+            36, 4, 44, 12, 52, 20, 60, 28,
+            35, 3, 43, 11, 51, 19, 59, 27,
+            34, 2, 42, 10, 50, 18, 58, 26,
+            33, 1, 41, 9, 49, 17, 57, 25
     };
 }
