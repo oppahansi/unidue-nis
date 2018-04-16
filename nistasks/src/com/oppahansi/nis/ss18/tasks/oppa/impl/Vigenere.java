@@ -1,6 +1,6 @@
 package com.oppahansi.nis.ss18.tasks.oppa.impl;
 
-import com.oppahansi.nis.ss17.tasks.oppa.util.Constants;
+import com.oppahansi.nis.ss18.tasks.oppa.util.Constants;
 
 /**
  * <p>This class represents the implementation of vigenere algorithm</p>

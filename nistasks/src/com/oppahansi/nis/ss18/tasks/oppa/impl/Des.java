@@ -1,7 +1,7 @@
 package com.oppahansi.nis.ss18.tasks.oppa.impl;
 
-import com.oppahansi.nis.ss17.tasks.oppa.util.Constants;
-import com.oppahansi.nis.ss17.tasks.oppa.util.Toolbox;
+import com.oppahansi.nis.ss18.tasks.oppa.util.Constants;
+import com.oppahansi.nis.ss18.tasks.oppa.util.Toolbox;
 
 /**
  * <p>This class represents the implementation of DES algorithm</p>
