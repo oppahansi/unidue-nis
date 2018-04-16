@@ -1,4 +1,4 @@
-package com.oppahansi.nis.ss17.tasks.oppa.impl;
+package com.oppahansi.nis.ss18.tasks.oppa.impl;
 
 import com.oppahansi.nis.ss17.tasks.oppa.util.Constants;
 import com.oppahansi.nis.ss17.tasks.oppa.util.Toolbox;
@@ -87,7 +87,7 @@ public class Des {
      *
      * @param key   Initial key
      * @param round Required round for calculation
-     * @return
+     * @return roundKey Returns the respective round key
      */
     public static String getKeyForRound(String key, int round) {
         createRoundKeys(key);
@@ -155,7 +155,7 @@ public class Des {
 
     /**
      * <p>The 64-bit key is permuted according to the PC-1 table.</p>
-     * <p>
+     *
      * <p><strong>Note</strong> only 56 bits of the original key appear in the permuted key.</p>
      *
      * @param key Initial key

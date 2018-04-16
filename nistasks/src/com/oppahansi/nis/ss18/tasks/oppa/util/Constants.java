@@ -1,4 +1,4 @@
-package com.oppahansi.nis.ss17.tasks.oppa.util;
+package com.oppahansi.nis.ss18.tasks.oppa.util;
 
 /**
  * <p>This class contains constants / hardcoded values for reuse</p>
